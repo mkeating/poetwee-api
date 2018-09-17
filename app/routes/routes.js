@@ -5,6 +5,6 @@ module.exports = function(app){
 	app.post('/tweets', (req, res) => {
 
 		const responseText = `You have sent me ${req.body.body}`
-		res.send(process.env.twit-key)
+		res.send(process.env.twitKey)
 	})
 }
