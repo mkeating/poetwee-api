@@ -1,6 +1,6 @@
 //routes/routes.js
 const twit = require('twit')
-const config = = {
+const config = {
   consumer_key: 		process.env.twitConsumerKey,  
   consumer_secret: 		process.env.twitConsumerSecret,
   access_token: 		process.env.twitAccessToken,  
