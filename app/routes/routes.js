@@ -20,7 +20,7 @@ module.exports = function(app){
 		
 
 		Twitter.get('search/tweets', {q: searchQuery, count: 1}, (err, data, response) =>{
-			res.send(json(data));
+			res.json(data);
 		})
 
 

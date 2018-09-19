@@ -6,7 +6,17 @@ const app = express()
 const port = process.env.PORT || 8000
 
 
-app.use(bodyParser.urlencoded({extended: true}))
+//middleware to allow CORS
+const cors = require('cors')
+
+app.configure(function(){
+	app.use(cors())
+	app.use(bodyParser.urlencoded({extended: true}))
+})
+
+
+
+
 
 require('./app/routes')(app)
 
