@@ -15,8 +15,12 @@ module.exports = function(app){
 
 		const searchQuery = req.body.body
 		
+		//split the words and add spaces for better searching (only search for distinct words)
+		const searchWords = searchQuery.split(' ').map(word => ` ${word} `);
+		
+
 		Twitter.get('search/tweets', {q: searchQuery, count: 1}, (err, data, response) =>{
-			res.send(data);
+			res.send(json(data));
 		})
 
 
