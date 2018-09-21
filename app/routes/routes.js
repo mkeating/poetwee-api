@@ -16,7 +16,7 @@ module.exports = function(app){
 	app.post('/tweets', (req, res) => {
 
 		//res.setHeader("Access-Control-Allow-Origin", "*");
-		const searchQuery = req.body.body
+		const searchQuery = req.body.value
 		
 		//split the words and add spaces for better searching (only search for distinct words)
 		//const searchWords = searchQuery.split(' ').map(word => ` ${word} `);
