@@ -8,9 +8,9 @@ const port = process.env.PORT || 8000
 
 //middleware to allow CORS
 const cors = require('cors')
-
-app.use(cors())
 app.options('*', cors());
+app.use(cors())
+
 /*app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", '*')
     res.header("Access-Control-Allow-Credentials", true)
@@ -35,21 +35,20 @@ const config = {
 
 const Twitter = new twit(config);
 
-	app.post('/tweets', (req, res) => {
+app.post('/tweets', (req, res) => {
 
-		res.setHeader("Access-Control-Allow-Origin", "*");
-		const searchQuery = req.body.body
+	res.setHeader("Access-Control-Allow-Origin", "*");
+	const searchQuery = req.body.body
 		
-		//split the words and add spaces for better searching (only search for distinct words)
-		const searchWords = searchQuery.split(' ').map(word => ` ${word} `);
+	//split the words and add spaces for better searching (only search for distinct words)
+	const searchWords = searchQuery.split(' ').map(word => ` ${word} `);
 		
 
-		Twitter.get('search/tweets', {q: searchQuery, count: 1}, (err, data, response) =>{
-			res.json(data);
-		})
-
-
+	Twitter.get('search/tweets', {q: searchQuery, count: 1}, (err, data, response) =>{
+		res.json(data);
 	})
+
+})
 
 
 //require('./app/routes')(app)
