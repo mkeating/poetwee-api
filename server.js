@@ -8,8 +8,9 @@ const port = process.env.PORT || 8000
 
 //middleware to allow CORS
 const cors = require('cors')
-app.options('*', cors());
+
 app.use(cors())
+app.options('*', cors());
 
 /*app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", '*')
@@ -45,19 +46,20 @@ app.post('/tweets', (req, res) => {
 		
 
 	Twitter.get('search/tweets', {q: searchQuery, count: 1}, (err, data, response) =>{
-		if(err){
+		/*if(err){
 			res.send(err)
-		}
+		}*/
 
 		res.json(data)
 	})
 
 })
 
+/*
 app.get('/hi', (req, res) => {
 	res.send('hi!')
 })
-
+*/
 
 //require('./app/routes')(app)
 
