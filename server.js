@@ -38,20 +38,21 @@ const Twitter = new twit(config);
 
 app.post('/tweets', (req, res) => {
 
+	res.send(req)
 	//res.setHeader("Access-Control-Allow-Origin", "*");
-	const searchQuery = req.body.search
+
+	//const searchQuery = req.body.search
 		
 	//split the words and add spaces for better searching (only search for distinct words)
 	//const searchWords = searchQuery.split(' ').map(word => ` ${word} `)
 		
-	res.setHeader('Content-Type', 'application/json');
-	Twitter.get('search/tweets', {q: searchQuery, count: 1}, (err, data, response) =>{
-		/*if(err){
-			res.send(err)
-		}*/
+	//res.setHeader('Content-Type', 'application/json');
+	/*Twitter.get('search/tweets', {q: searchQuery, count: 1}, (err, data, response) =>{
+		
 
 		res.json(data.statuses)
-	})
+	})*/
+
 
 })
 
