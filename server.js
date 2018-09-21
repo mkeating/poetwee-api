@@ -41,7 +41,7 @@ app.post('/tweets', (req, res) => {
 	res.json({
 
 		"msg": "hi, im testing what you're sending",
-		"search term": req.body.value
+		"search term": req.body
 	})
 	//res.setHeader("Access-Control-Allow-Origin", "*");
 
