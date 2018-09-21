@@ -23,7 +23,7 @@ app.options('*', cors());
 app.use(bodyParser.json())
 
 
-
+/*
 const twit = require('twit')
 const config = {
   consumer_key: 		process.env.twitConsumerKey,  
@@ -59,7 +59,7 @@ app.post('/tweets', (req, res) => {
 	})*/
 
 
-})
+//})
 
 /*
 app.get('/hi', (req, res) => {
@@ -67,7 +67,7 @@ app.get('/hi', (req, res) => {
 })
 */
 
-//require('./app/routes')(app)
+require('./app/routes')(app)
 
 app.listen(port, () => {
 	console.log(`we are live on ${port}`)
