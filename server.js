@@ -44,7 +44,7 @@ app.post('/tweets', (req, res) => {
 	//split the words and add spaces for better searching (only search for distinct words)
 	//const searchWords = searchQuery.split(' ').map(word => ` ${word} `)
 		
-
+	res.setHeader('Content-Type', 'application/json');
 	Twitter.get('search/tweets', {q: searchQuery, count: 1}, (err, data, response) =>{
 		/*if(err){
 			res.send(err)
