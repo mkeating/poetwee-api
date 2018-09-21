@@ -38,7 +38,11 @@ const Twitter = new twit(config);
 
 app.post('/tweets', (req, res) => {
 
-	res.send(req.body.value)
+	res.json({
+
+		"msg": "hi, im testing what you're sending",
+		"search term": req.body.value
+	})
 	//res.setHeader("Access-Control-Allow-Origin", "*");
 
 	//const searchQuery = req.body.search
