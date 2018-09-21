@@ -39,7 +39,7 @@ const Twitter = new twit(config);
 app.post('/tweets', (req, res) => {
 
 	//res.setHeader("Access-Control-Allow-Origin", "*");
-	const searchQuery = req.body.body.value
+	const searchQuery = req.body.search
 		
 	//split the words and add spaces for better searching (only search for distinct words)
 	//const searchWords = searchQuery.split(' ').map(word => ` ${word} `)
