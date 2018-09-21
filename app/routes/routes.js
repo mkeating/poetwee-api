@@ -15,22 +15,17 @@ const Twitter = new twit(config);
 module.exports = function(app){
 	app.post('/tweets', (req, res) => {
 
-		/*res.setHeader("Access-Control-Allow-Origin", "*");
+		//res.setHeader("Access-Control-Allow-Origin", "*");
 		const searchQuery = req.body.body
 		
 		//split the words and add spaces for better searching (only search for distinct words)
 		const searchWords = searchQuery.split(' ').map(word => ` ${word} `);
 		
 
-		Twitter.get('search/tweets', {q: searchQuery, count: 1}, (err, data, response) =>{
-			res.json(data);
-		})*/
+		Twitter.get('search/tweets', {q: searchQuery, count: 10}, (err, data, response) =>{
+			res.json(data.statuses);
 
-		res.json({
-
-		"msg": "hi, im testing what you're sending",
-		"search term": req.body
-	})
+		})
 
 
 	})
