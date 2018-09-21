@@ -19,7 +19,7 @@ app.options('*', cors());
     res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json')
     next()
 })*/
-app.use(bodyParser.urlencoded({extended: true}))
+//app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
 
