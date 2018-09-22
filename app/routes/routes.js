@@ -20,7 +20,7 @@ module.exports = function(app){
 		
 		//split the words and add spaces for better searching (only search for distinct words)
 		//const searchWords = searchQuery.split(' ').map(word => ` ${word} `);
-		res.send('hi there')
+		res.json('hi there')
 
 		//TODO: run twitter search for each word, accumulating response object. if any search fails, respond to client immediately with error
 
