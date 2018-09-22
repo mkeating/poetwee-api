@@ -10,7 +10,7 @@ const port = process.env.PORT || 8000
 const cors = require('cors')
 
 app.use(cors({origin: '*'}))
-app.options('*', cors());
+//app.options('*', cors());
 
 app.use(bodyParser.json())
 
