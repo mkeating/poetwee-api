@@ -29,8 +29,7 @@ module.exports = function(app){
 			//console.log(data.statuses)
 
 		}).then(data =>{
-			const statuses = data.statuses
-			res.json(statuses)
+			res.json(data)
 		})
 
 
