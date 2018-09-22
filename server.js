@@ -9,7 +9,7 @@ const port = process.env.PORT || 8000
 //middleware to allow CORS
 const cors = require('cors')
 
-app.use(cors())
+app.use(cors({origin: '*'}))
 app.options('*', cors());
 
 app.use(bodyParser.json())

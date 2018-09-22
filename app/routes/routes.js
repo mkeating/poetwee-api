@@ -28,8 +28,8 @@ module.exports = function(app){
 			
 			//console.log(data.statuses)
 
-		}).then(data =>{
-			res.json(data)
+		}).then(response =>{
+			res.json(response)
 		})
 
 
