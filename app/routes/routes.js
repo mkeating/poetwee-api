@@ -16,21 +16,22 @@ module.exports = function(app){
 	app.post('/tweets', (req, res) => {
 
 		//res.setHeader("Access-Control-Allow-Origin", "*");
-		//const searchQuery = req.body.value
+		const searchQuery = req.body.value
 		
 		//split the words and add spaces for better searching (only search for distinct words)
 		//const searchWords = searchQuery.split(' ').map(word => ` ${word} `);
-		res.json('hi there')
+		//res.json('hi there')
 
 		//TODO: run twitter search for each word, accumulating response object. if any search fails, respond to client immediately with error
 
-		/*Twitter.get('search/tweets', {q: searchQuery, count: 10}, (err, data, response) =>{
+		const results = {}
+		Twitter.get('search/tweets', {q: searchQuery, count: 10}, (err, data, response) =>{
 			
 			//console.log(data.statuses)
-
-		}).then(response =>{
-			res.json(response)
-		})*/
+			results.statuses = data.statuses
+		}).then(()=>{
+			res.json(results)
+		})
 
 
 	})
