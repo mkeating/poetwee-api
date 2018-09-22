@@ -29,10 +29,8 @@ module.exports = function(app){
 			
 			//console.log(data.statuses)
 			results.statuses = data.statuses
-		}).then(()=>{
-			res.json(results)
+			res.json(data.statuses)
 		})
-
 
 	})
 }
