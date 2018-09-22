@@ -10,13 +10,24 @@ const config = {
 
 
 
+
 const Twitter = new twit(config);
+
+const callTwitter = () =>{
+
+	Twitter.get('search/tweets', {q: 'hi', count: 10}, (err, data, response)  =>{
+			
+			//console.log(data.statuses)
+			//res.json(data.statuses)
+		}).then(data => return data)
+}
+
 
 module.exports = function(app){
 	app.post('/tweets', (req, res) => {
 
 		//res.setHeader("Access-Control-Allow-Origin", "*");
-		const searchQuery = req.body.value
+		//const searchQuery = req.body.value
 		
 		//split the words and add spaces for better searching (only search for distinct words)
 		//const searchWords = searchQuery.split(' ').map(word => ` ${word} `);
@@ -28,7 +39,11 @@ module.exports = function(app){
 			'statuses': ['sdfsdfsdfsdf', 'sdfseetyy', 'yerwfewfwef', 'twewfwef']
 		}
 
-		res.json(results)
+		res.json(callTwitter())
+
+
+
+		//res.json(results)
 		//(err, data, response)
 		/*Twitter.get('search/tweets', {q: 'hi', count: 10}, (err, data, response)  =>{
 			
