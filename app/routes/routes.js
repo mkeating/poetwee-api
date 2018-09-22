@@ -27,6 +27,8 @@ module.exports = function(app){
 		const results = {
 			'statuses': ['sdfsdfsdfsdf', 'sdfseetyy', 'yerwfewfwef', 'twewfwef']
 		}
+
+		res.json(results)
 		//(err, data, response)
 		/*Twitter.get('search/tweets', {q: 'hi', count: 10}, (err, data, response)  =>{
 			
