@@ -24,12 +24,14 @@ module.exports = function(app){
 
 		//TODO: run twitter search for each word, accumulating response object. if any search fails, respond to client immediately with error
 
-		const results = {}
+		//const results = {}
 		Twitter.get('search/tweets', {q: searchQuery, count: 10}, (err, data, response) =>{
 			
 			//console.log(data.statuses)
-			results.statuses = data.statuses
-			res.json(data.statuses)
+			//results.statuses = data.statuses
+			//res.json(data.statuses)
+		}).then(results => {
+			res.json(results)
 		})
 
 	})
