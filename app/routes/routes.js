@@ -35,14 +35,16 @@ module.exports = function(app){
 		//res.json(results)
 		//(err, data, response)
 
-		Twitter.get('search/tweets', {q:'hi', count: 10}, function(err, data, response) {
-				
-				results.data = data
-				return data
-				
-			}).then(data => {
-				res.setHeader("Access-Control-Allow-Origin", "*")
-				res.json(data)
+		Twitter.get('search/tweets', {q:'hi', count: 10})
+			.catch(function(err){
+				console.log(err.stack)
+			})
+			.then(function(result) {
+				results.data = result.data
+			})
+			.then(function(){
+				res.setHeader("Access-Control-Allow-Origin", "*");
+				res.json(results)
 			})
 
 		/*searchTwitter = async (word) =>{
