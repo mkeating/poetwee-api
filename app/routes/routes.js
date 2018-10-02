@@ -35,11 +35,8 @@ module.exports = function(app){
 		//res.json(results)
 		//(err, data, response)
 
-		Twitter.get('search/tweets', {q:'hi', count: 10})
-			.catch(err => {
-				console.log(err)
-			})
-			.then(data => {
+		Twitter.get('search/tweets', {q:'hi', count: 10}, function(err, data, response) {
+			
 				return data.json()
 			}).then(data => {
 				res.setHeader("Access-Control-Allow-Origin", "*")
