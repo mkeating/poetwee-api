@@ -13,6 +13,8 @@ const Twitter = new twit(config);
 module.exports = function(app){
 	
 
+	//for later: https://stackoverflow.com/questions/51785049/data-json-is-not-a-function-error
+
 	app.post('/tweets', (req, res) => {
 
 		//res.setHeader("Access-Control-Allow-Origin", "*");
@@ -37,8 +39,8 @@ module.exports = function(app){
 			.catch(err => {
 				console.log(err)
 			})
-			.then(result => {
-				return result.json()
+			.then(data => {
+				return data.json()
 			}).then(data => {
 				res.setHeader("Access-Control-Allow-Origin", "*")
 				res.json(data)	
