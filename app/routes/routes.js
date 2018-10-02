@@ -36,11 +36,9 @@ module.exports = function(app){
 		//(err, data, response)
 
 		Twitter.get('search/tweets', {q:'hi', count: 10}, function(err, data, response) {
-			
-				
-			}).then(data => {
 				res.setHeader("Access-Control-Allow-Origin", "*")
-				res.json(data)	
+				res.json(data)
+				
 			})
 
 		/*searchTwitter = async (word) =>{
