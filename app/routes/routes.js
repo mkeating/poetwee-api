@@ -30,7 +30,7 @@ module.exports = function(app){
 
 		const searchTerms = ['hi', 'there']
 
-		res.json(results)
+		//res.json(results)
 		//(err, data, response)
 
 		Twitter.get('search/tweets', {q:'hi', count: 10})
