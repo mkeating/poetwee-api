@@ -30,10 +30,10 @@ module.exports = function(app){
 
 		const searchTerms = ['hi', 'there']
 
-		//res.json(results)
+		res.json(results)
 		//(err, data, response)
 
-		searchTwitter = async (word) =>{
+		/*searchTwitter = async (word) =>{
 
 			let resultsForThisWord = []
 
@@ -46,7 +46,7 @@ module.exports = function(app){
 						resultsForThisWord.push(status.text)
 					})
 				})
-		}
+		}*/
 
 		
 		
