@@ -38,11 +38,11 @@ module.exports = function(app){
 		Twitter.get('search/tweets', {q:'hi', count: 10}, function(err, data, response) {
 				
 				results.data = data
-				return response
+				return data
 				
-			}).then(res => {
+			}).then(data => {
 				res.setHeader("Access-Control-Allow-Origin", "*")
-				res.json(results)
+				res.json(data)
 			})
 
 		/*searchTwitter = async (word) =>{
