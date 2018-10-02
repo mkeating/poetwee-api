@@ -35,7 +35,7 @@ module.exports = function(app){
 		//res.json(results)
 		//(err, data, response)
 
-		//this is working!! 
+		//this is working!! Next step is the promise.all() thing
 
 		Twitter.get('search/tweets', {q:'hi', count: 10})
 			.catch(function(err){
