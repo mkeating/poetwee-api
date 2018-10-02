@@ -33,6 +33,17 @@ module.exports = function(app){
 		res.json(results)
 		//(err, data, response)
 
+		Twitter.get('search/tweets', {q:'hi', count: 10})
+			.catch(err => {
+				console.log(err)
+			})
+			.then(result => {
+				return result.json()
+			}).then(data => {
+				res.setHeader("Access-Control-Allow-Origin", "*")
+				res.json(data)	
+			})
+
 		/*searchTwitter = async (word) =>{
 
 			let resultsForThisWord = []
