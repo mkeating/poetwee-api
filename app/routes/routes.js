@@ -8,22 +8,11 @@ const config = {
   timeout_ms:           5*1000
 }
 
-
-
-
 const Twitter = new twit(config);
 
-const callTwitter = () =>{
-
-	Twitter.get('search/tweets', {q: 'hi', count: 10}, (err, data, response)  =>{
-			
-			//console.log(data.statuses)
-			//res.json(data.statuses)
-		}).then(data => return data)
-}
-
-
 module.exports = function(app){
+	
+
 	app.post('/tweets', (req, res) => {
 
 		//res.setHeader("Access-Control-Allow-Origin", "*");
@@ -36,23 +25,33 @@ module.exports = function(app){
 		//TODO: run twitter search for each word, accumulating response object. if any search fails, respond to client immediately with error
 
 		const results = {
-			'statuses': ['sdfsdfsdfsdf', 'sdfseetyy', 'yerwfewfwef', 'twewfwef']
+			data: []
 		}
 
-		res.json(callTwitter())
-
-
+		const searchTerms = ['hi', 'there']
 
 		//res.json(results)
 		//(err, data, response)
-		/*Twitter.get('search/tweets', {q: 'hi', count: 10}, (err, data, response)  =>{
-			
-			//console.log(data.statuses)
-			results.statuses = data.statuses
-			//res.json(data.statuses)
-		}).then(() => {
-			console.log(results)
-		})*/
+
+		searchTwitter = async (word) =>{
+
+			let resultsForThisWord = []
+
+			Twitter.get('search/tweets', {q: 'hi', count: 10})
+				.catch(function(err) {
+					console.log(err)
+				})
+				.then(function(result){
+					const texts = result.data.statuses.map((status)=>{
+						resultsForThisWord.push(status.text)
+					})
+				})
+		}
+
+		
+		
+		
+	
 
 	})
 }
