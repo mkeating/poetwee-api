@@ -35,6 +35,8 @@ module.exports = function(app){
 		//res.json(results)
 		//(err, data, response)
 
+		//this is working!! 
+
 		Twitter.get('search/tweets', {q:'hi', count: 10})
 			.catch(function(err){
 				console.log(err.stack)
@@ -43,7 +45,7 @@ module.exports = function(app){
 				results.data = result.data
 			})
 			.then(function(){
-				res.setHeader("Access-Control-Allow-Origin", "*");
+				//res.setHeader("Access-Control-Allow-Origin", "*");
 				res.json(results)
 			})
 
