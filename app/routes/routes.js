@@ -26,18 +26,8 @@ module.exports = function(app){
 
 		//TODO: run twitter search for each word, accumulating response object. if any search fails, respond to client immediately with error
 
-		const results = {
-			data: []
-		}
-
-		const searchTerms = ['hi', 'there']
-
-		//res.json(results)
-		//(err, data, response)
-
-		//this is working!! Next step is the promise.all() thing
-
-		Twitter.get('search/tweets', {q:'hi', count: 10})
+		//this works!
+		/*Twitter.get('search/tweets', {q:'hi', count: 10})
 			.catch(function(err){
 				console.log(err.stack)
 			})
@@ -48,26 +38,41 @@ module.exports = function(app){
 				//res.setHeader("Access-Control-Allow-Origin", "*");
 				res.json(results)
 			})
+			*/
 
-		/*searchTwitter = async (word) =>{
+		const results = {}
 
-			let resultsForThisWord = []
+		const searchTerms = ['hi', 'there']
 
-			Twitter.get('search/tweets', {q: 'hi', count: 10})
-				.catch(function(err) {
-					console.log(err)
-				})
-				.then(function(result){
-					const texts = result.data.statuses.map((status)=>{
-						resultsForThisWord.push(status.text)
+		//function that searches Twitter for a word, returning 10 results that contain that word
+		searchTwitter = (word) => {
+
+			//array that holds results (after cleaning)
+			let thisWord = []
+
+			//returns a Promise, so that we can use Promise.all() to run this for all search terms
+			return new Promise( (resolve, reject) => {
+
+				Twitter.get('search/tweets', {q: word, count:2})
+					.catch(err =>{
+						return {error: err.stack}
 					})
-				})
-		}*/
+					.then(result => {
 
-		
-		
-		
-	
+						for(let status of result.data.statuses) {
+							thisWord.push(status.text)
+						}
+						//resolve the promise with the accumulated tweets
+						resolve(thisWord)
+					})// end Twitter.get()
+			}) //end promise
+		} //end searchTwitter
 
+		Promise.all(searchTerms.map(term => {
+			return searchTwitter(term)
+		}))
+		.then(results => {
+			res.json(results)
+		})
 	})
 }
