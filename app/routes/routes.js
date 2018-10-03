@@ -42,6 +42,7 @@ module.exports = function(app){
 
 		const results = {}
 
+		//TODO: get this from request
 		const searchTerms = ['hi', 'there']
 
 		//function that searches Twitter for a word, returning 10 results that contain that word
@@ -53,7 +54,7 @@ module.exports = function(app){
 			//returns a Promise, so that we can use Promise.all() to run this for all search terms
 			return new Promise( (resolve, reject) => {
 
-				Twitter.get('search/tweets', {q: word, count:10})
+				Twitter.get('search/tweets', {q: word, count:10, truncated: false, retweeted: false})
 					.catch(err =>{
 						return {error: err.stack}
 					})
