@@ -53,7 +53,7 @@ module.exports = function(app){
 			//returns a Promise, so that we can use Promise.all() to run this for all search terms
 			return new Promise( (resolve, reject) => {
 
-				Twitter.get('search/tweets', {q: word, count:2})
+				Twitter.get('search/tweets', {q: word, count:10})
 					.catch(err =>{
 						return {error: err.stack}
 					})
