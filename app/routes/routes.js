@@ -43,7 +43,7 @@ module.exports = function(app){
 		const results = {}
 
 		//TODO: get this from request
-		const searchTerms = ['hi', 'there']
+		const searchTerms = req.body.split(' ')
 
 		//function that searches Twitter for a word, returning 10 results that contain that word
 		searchTwitter = (word) => {
@@ -56,7 +56,7 @@ module.exports = function(app){
 
 				Twitter.get('search/tweets', {q: word, count:10, truncated: false, retweeted: false})
 					.catch(err =>{
-						return {error: err.stack}
+						return {error: err.stack} //should reject here
 					})
 					.then(result => {
 
