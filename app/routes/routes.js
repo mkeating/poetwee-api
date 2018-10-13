@@ -63,11 +63,7 @@ module.exports = function(app){
 
 						for(let status of result.data.statuses) {
 
-							if(status.retweeted_status){
-								let text = status.retweeted_status
-							} else {
-								let text = status.full_text
-							}
+							const ourText = status.retweeted_status : status.retweeted_status ? status.full_text
 
 							const screennames = /\B@[a-z0-9_:-]+/gi;
 							const hashtags = /(#[a-z0-9][a-z0-9\-_]*)/gi;
@@ -75,7 +71,7 @@ module.exports = function(app){
 
 							//get the tweet text, remove: links, screennames, 'RT', hashtags. 
 							//TODO: add strong tags to the search word, and spaces on each side to prevent errors with subwords like "a" and "to" and "can"
-							let cleanStatus = ' ' + status[text].replace(links, '')
+							let cleanStatus = ' ' + ourText.replace(links, '')
 								.replace(screennames, '')
 								.replace('RT', '')
 								.replace(hashtags, '')
