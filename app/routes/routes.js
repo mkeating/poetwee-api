@@ -54,7 +54,7 @@ module.exports = function(app){
 			//returns a Promise, so that we can use Promise.all() to run this for all search terms
 			return new Promise( (resolve, reject) => {
 
-				Twitter.get('search/tweets', {q: word, count:10, truncated: false, retweeted: false, lang: 'en'})
+				Twitter.get('search/tweets', {q: word, count:10, truncated: false, retweeted: false, lang: 'en', tweet_mode: 'extended'})
 					.catch(err =>{
 						return {error: err.stack} //should reject here
 					})
@@ -68,7 +68,7 @@ module.exports = function(app){
 
 							//get the tweet text, remove: links, screennames, 'RT', hashtags. 
 							//TODO: add strong tags to the search word, and spaces on each side to prevent errors with subwords like "a" and "to" and "can"
-							let cleanStatus = ' ' + status.text.replace(links, '')
+							let cleanStatus = ' ' + status.full_text.replace(links, '')
 								.replace(screennames, '')
 								.replace('RT', '')
 								.replace(hashtags, '')
