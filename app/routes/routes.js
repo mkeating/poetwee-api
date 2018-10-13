@@ -61,7 +61,20 @@ module.exports = function(app){
 					.then(result => {
 
 						for(let status of result.data.statuses) {
-							thisWord.push(status.text)
+
+							const screennames = /\B@[a-z0-9_:-]+/gi;
+							const hashtags = /(#[a-z0-9][a-z0-9\-_]*)/gi;
+							const links = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
+
+							//get the tweet text, remove: links, screennames, 'RT', hashtags. 
+							//TODO: add strong tags to the search word, and spaces on each side to prevent errors with subwords like "a" and "to" and "can"
+							let cleanStatus = ' ' + status.text.replace(links, '')
+								.replace(screennames, '')
+								.replace('RT', '')
+								.replace(hashtags, '')
+
+							//add to results
+							thisWord.push(cleanStatus);
 						}
 						//resolve the promise with the accumulated tweets
 						resolve(thisWord)
