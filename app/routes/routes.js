@@ -54,7 +54,7 @@ module.exports = function(app){
 			//returns a Promise, so that we can use Promise.all() to run this for all search terms
 			return new Promise( (resolve, reject) => {
 
-				Twitter.get('search/tweets', {q: word, count:10, lang: 'en', tweet_mode: 'extended'})
+				Twitter.get('search/tweets', {q: word, retweeted_status: false, count:10, lang: 'en', tweet_mode: 'extended'})
 					.catch(err =>{
 						return {error: err.stack} //should reject here
 					})
