@@ -43,7 +43,7 @@ module.exports = function(app){
 		const results = {}
 
 		//TODO: get this from request
-		const searchTerms = req.body.split(' ')
+		const searchTerms = req.body.value.split(' ')
 
 		//function that searches Twitter for a word, returning 10 results that contain that word
 		searchTwitter = (word) => {
