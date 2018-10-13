@@ -63,7 +63,7 @@ module.exports = function(app){
 
 						for(let status of result.data.statuses) {
 
-							const ourText = status.retweeted_status ? status.retweeted_status.text : status.full_text
+							const ourText = status.retweeted_status ? status.retweeted_status.full_text : status.full_text
 
 							const screennames = /\B@[a-z0-9_:-]+/gi;
 							const hashtags = /(#[a-z0-9][a-z0-9\-_]*)/gi;
