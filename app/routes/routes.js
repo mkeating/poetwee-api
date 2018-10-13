@@ -54,7 +54,7 @@ module.exports = function(app){
 			//returns a Promise, so that we can use Promise.all() to run this for all search terms
 			return new Promise( (resolve, reject) => {
 
-				Twitter.get('search/tweets', {q: word, count:10, truncated: false, retweeted: false})
+				Twitter.get('search/tweets', {q: word, count:10, truncated: false, retweeted: false, lang: 'en'})
 					.catch(err =>{
 						return {error: err.stack} //should reject here
 					})
@@ -84,7 +84,7 @@ module.exports = function(app){
 
 		Promise.all(searchTerms.map(term => {
 			return searchTwitter(term)
-		}))
+		})) //TODO: catch rejected promise here
 		.then(results => {
 			res.json(results)
 		})
