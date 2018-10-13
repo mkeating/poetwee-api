@@ -54,7 +54,7 @@ module.exports = function(app){
 			//returns a Promise, so that we can use Promise.all() to run this for all search terms
 			return new Promise( (resolve, reject) => {
 
-				Twitter.get('search/tweets', {q: word, retweeted_status: false, count:10, lang: 'en', tweet_mode: 'extended'})
+				Twitter.get('search/tweets', {q: word, truncated: false, count:10, lang: 'en', tweet_mode: 'extended'})
 					.catch(err =>{
 						return {error: err.stack} //should reject here
 					})
@@ -63,7 +63,7 @@ module.exports = function(app){
 
 						for(let status of result.data.statuses) {
 
-							const ourText = status.full_text
+							const ourText = status.retweeted_status ? status.retweeted_status.text : status.full_text
 
 							const screennames = /\B@[a-z0-9_:-]+/gi;
 							const hashtags = /(#[a-z0-9][a-z0-9\-_]*)/gi;
